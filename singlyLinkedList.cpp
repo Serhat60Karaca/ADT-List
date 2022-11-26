@@ -96,6 +96,8 @@ int main(){
     list1->push_back(25);
     list1->push_back(455);
     list1->push_back(322);
+    list1->print();
     list1->insert(16, 2);
+    cout<<"after insertion"<<endl;
     list1->print();
 }
