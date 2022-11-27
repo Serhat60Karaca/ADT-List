@@ -46,28 +46,34 @@ class doublyLinkedList{
         }
     }
     void insert(int inx, int data){
-        Node *newNode = new Node(data);
-        Node *temp = head;
-        int counter = 1;
-        if(head==NULL){
-            push_front(data);
-        }
-
-        else{
-            while(temp !=NULL){
-            if(counter == inx){
-                Node *previous = temp->prev;
-                newNode->next = previous->next;
-                previous->next = newNode;
-                newNode->prev = previous;
+        Node *current = head;
+        int c = 0;
+        while(current !=NULL){
+            if(c == inx-1){
+                Node *new_node = new Node(data);
+                Node *next_node = current->next;
+                current->next = new_node;
+                new_node->prev = current;
+                new_node->next = next_node;
+                if(next_node != NULL){
+                    next_node->prev = new_node;
+                }  
             }
             else{
-            counter++;
-            temp = temp->next;
+                c++;
+                current = current->next;
             }
         }
+    }
+    void reversed(){
+        Node *current = head;
+        Node *temp = NULL;
+        while(current != NULL){
+            temp = current->prev;
+            current->prev = current->next;
+            current->next = temp;
+            current = current->next;
         }
-        
     }
     void print(){
         Node *temp = head;
